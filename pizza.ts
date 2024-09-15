@@ -94,10 +94,12 @@ export function getPizzaDetail(identifier: string | number) {
   let ret: Pizza | undefined;
   if (typeof identifier === "number") {
     ret = menu.find((pizza) => pizza.id === identifier);
-  } else {
+  } else if (typeof identifier === "string") {
     ret = menu.find(
       (pizza) => pizza.name.toLowerCase() === identifier.toLowerCase()
     );
+  } else {
+    throw new TypeError("Parameter 'identifier' must be a string or number!");
   }
 
   if (!ret) {

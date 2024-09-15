@@ -59,4 +59,5 @@ type UserRole = "guest" | "admin" | "member" | "support";
 // let userRole: UserRole = "Admin" -> type error;
 let userRole: UserRole = "admin";
 
-console.log(getPizzaDetail(false));
+// console.log(getPizzaDetail(false));  => throws a TypeError
+console.log(getPizzaDetail(1));
