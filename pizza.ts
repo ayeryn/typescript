@@ -5,6 +5,12 @@ type Pizza = {
   price: number;
 };
 
+type Order = {
+  id: number;
+  pizza: Pizza;
+  status: string;
+};
+
 // Setup
 const menu: Pizza[] = [
   { name: "Sausage", price: 10.5 },
@@ -15,7 +21,7 @@ const menu: Pizza[] = [
 
 let cashInRegister = 100;
 let nextOrderId = 1;
-const orderQueue = [];
+const orderQueue: Order[] = [];
 
 /**
  * Challenge 1
@@ -46,9 +52,9 @@ function placeOrder(pizzaName: string) {
   cashInRegister += pizza.price;
 
   // Add order to queue
-  const newOrder = {
+  const newOrder: Order = {
     id: nextOrderId++,
-    name: pizzaName,
+    pizza: pizza,
     status: "ordered",
   };
   orderQueue.push(newOrder);
@@ -65,6 +71,10 @@ function placeOrder(pizzaName: string) {
  */
 function completeOrder(orderId: number) {
   const currOrder = orderQueue.find((order) => order.id === orderId);
+  if (!currOrder) {
+    console.error(`${orderId} does not exist in the queue`);
+    return;
+  }
   currOrder.status = "completed";
   return currOrder;
 }
