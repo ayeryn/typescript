@@ -95,7 +95,9 @@ function getPizzaDetail(identifier: string | number) {
   if (typeof identifier === "number") {
     ret = menu.find((pizza) => pizza.id === identifier);
   } else {
-    ret = menu.find((pizza) => pizza.name === identifier);
+    ret = menu.find(
+      (pizza) => pizza.name.toLowerCase() === identifier.toLowerCase()
+    );
   }
 
   if (!ret) {
@@ -120,5 +122,5 @@ console.log("Cash: ", cashInRegister);
 
 getPizzaDetail(1);
 getPizzaDetail(8);
-getPizzaDetail("Veggie");
+getPizzaDetail("VEGGIE");
 getPizzaDetail("BBQ");
