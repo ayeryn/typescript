@@ -49,3 +49,9 @@ function displayInfo(p: Person) {
 
 displayInfo(person); // Amy lives at 123 Main
 displayInfo(person2); // Bob lives at undefined
+
+let studentName = "Alice";
+const teacherName = "Bella";
+
+console.log(typeof studentName);
+console.log(typeof teacherName);
