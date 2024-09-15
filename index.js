@@ -8,6 +8,7 @@ const menu = [
 ];
 
 let cashInRegister = 100;
+const nextOrderId = 1;
 const orderQueue = [];
 
 /**
