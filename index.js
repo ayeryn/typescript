@@ -36,8 +36,9 @@ function placeOrder(pizzaName) {
 
   // Add order to queue
   const newOrder = {
+    id: orderQueue.length + 1,
     name: pizzaName,
-    status: "ordered"
+    status: "ordered",
   };
   orderQueue.push(newOrder);
 
@@ -47,5 +48,12 @@ function placeOrder(pizzaName) {
 
 /**
  * Challenge 3
- * Add a utility function "completeOrder"
+ * Add a utility function "completeOrder" that takes an orderId parameter and:
+ * 1. find the correct order in the orderQueue and mark as "completed"
+ * 2. return the found order
  */
+function completeOrder(orderId) {
+  const currOrder = orderQueue.find((order) => order.id === orderId);
+  currOrder.status = "completed";
+  return currOrder;
+}
