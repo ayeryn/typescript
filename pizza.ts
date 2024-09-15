@@ -57,7 +57,7 @@ function placeOrder(pizzaName) {
  * 1. find the correct order in the orderQueue and mark as "completed"
  * 2. return the found order
  */
-function completeOrder(orderId) {
+function completeOrder(orderId: number) {
   const currOrder = orderQueue.find((order) => order.id === orderId);
   currOrder.status = "completed";
   return currOrder;
@@ -69,7 +69,7 @@ addNewPizza({ name: "Seafood", price: 15 });
 addNewPizza({ name: "Deep Dish", price: 13.5 });
 
 placeOrder("Deep Dish");
-completeOrder("1");
+completeOrder(1);
 
 console.log("Menu: ", menu);
 console.log("Orders: ", orderQueue);
