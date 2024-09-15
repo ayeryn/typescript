@@ -1,25 +1,22 @@
 // A simple pizza restaurant program
 // Setup
-const menu = [
-  { name: "Sausage", price: 10.5 },
-  { name: "Truffle", price: 12 },
-  { name: "Cheese", price: 8 },
-  { name: "Veggie", price: 9 },
+var menu = [
+    { name: "Sausage", price: 10.5 },
+    { name: "Truffle", price: 12 },
+    { name: "Cheese", price: 8 },
+    { name: "Veggie", price: 9 },
 ];
-
-let cashInRegister = 100;
-const nextOrderId = 1;
-const orderQueue = [];
-
+var cashInRegister = 100;
+var nextOrderId = 1;
+var orderQueue = [];
 /**
  * Challenge 1
  * Add a utility function "addNewPizza" that takes a pizza object and adds it
  * to the menu
  */
 function addNewPizza(newPizza) {
-  menu.push(newPizza);
+    menu.push(newPizza);
 }
-
 /**
  * Challenge 2
  * Add a utility function "placeOrder" that takes a pizza name parameter and:
@@ -29,24 +26,24 @@ function addNewPizza(newPizza) {
  * 4. returns the new order object (jic we need to later)
  */
 function placeOrder(pizzaName) {
-  // Find pizza
-  const pizza = menu.find((pizza) => pizza.name === pizzaName);
-
-  // Update cash
-  cashInRegister += pizza.price;
-
-  // Add order to queue
-  const newOrder = {
-    id: nextOrderId++,
-    name: pizzaName,
-    status: "ordered",
-  };
-  orderQueue.push(newOrder);
-
-  // Return the order object
-  return newOrder;
+    // Find pizza
+    var pizza = menu.find(function (pizza) { return pizza.name === pizzaName; });
+    if (!pizza) {
+        console.error("".concat(pizzaName, " does not exist in the menu"));
+        return;
+    }
+    // Update cash
+    cashInRegister += pizza.price;
+    // Add order to queue
+    var newOrder = {
+        id: nextOrderId++,
+        name: pizzaName,
+        status: "ordered",
+    };
+    orderQueue.push(newOrder);
+    // Return the order object
+    return newOrder;
 }
-
 /**
  * Challenge 3
  * Add a utility function "completeOrder" that takes an orderId parameter and:
@@ -54,19 +51,16 @@ function placeOrder(pizzaName) {
  * 2. return the found order
  */
 function completeOrder(orderId) {
-  const currOrder = orderQueue.find((order) => order.id === orderId);
-  currOrder.status = "completed";
-  return currOrder;
+    var currOrder = orderQueue.find(function (order) { return order.id === orderId; });
+    currOrder.status = "completed";
+    return currOrder;
 }
-
 // Add some tests that would fail some places
 addNewPizza({ name: "Chicken", price: 11 });
 addNewPizza({ name: "Seafood", price: 15 });
 addNewPizza({ name: "Deep Dish", price: 13.5 });
-
 placeOrder("Deep Dish");
 completeOrder("1");
-
 console.log("Menu: ", menu);
 console.log("Orders: ", orderQueue);
 console.log("Cash: ", cashInRegister);
