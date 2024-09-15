@@ -1,6 +1,7 @@
 // A simple pizza restaurant program
 // Create custom types
 type Pizza = {
+  id: number;
   name: string;
   price: number;
 };
@@ -13,10 +14,10 @@ type Order = {
 
 // Setup
 const menu: Pizza[] = [
-  { name: "Sausage", price: 10.5 },
-  { name: "Truffle", price: 12 },
-  { name: "Cheese", price: 8 },
-  { name: "Veggie", price: 9 },
+  { id: 1, name: "Sausage", price: 10.5 },
+  { id: 2, name: "Truffle", price: 12 },
+  { id: 3, name: "Cheese", price: 8 },
+  { id: 4, name: "Veggie", price: 9 },
 ];
 
 let cashInRegister = 100;
@@ -42,7 +43,9 @@ function addNewPizza(newPizza: Pizza) {
  */
 function placeOrder(pizzaName: string) {
   // Find pizza
-  const pizza = menu.find((pizza) => pizza.name === pizzaName);
+  const pizza: Pizza | undefined = menu.find(
+    (pizza) => pizza.name === pizzaName
+  );
   if (!pizza) {
     console.error(`${pizzaName} does not exist in the menu`);
     return;
@@ -70,7 +73,9 @@ function placeOrder(pizzaName: string) {
  * 2. return the found order
  */
 function completeOrder(orderId: number) {
-  const currOrder = orderQueue.find((order) => order.id === orderId);
+  const currOrder: Order | undefined = orderQueue.find(
+    (order) => order.id === orderId
+  );
   if (!currOrder) {
     console.error(`${orderId} does not exist in the queue`);
     return;
@@ -80,9 +85,9 @@ function completeOrder(orderId: number) {
 }
 
 // Add some tests that would fail some places
-addNewPizza({ name: "Chicken", price: 11 });
-addNewPizza({ name: "Seafood", price: 15 });
-addNewPizza({ name: "Deep Dish", price: 13.5 });
+addNewPizza({ id: 5, name: "Chicken", price: 11 });
+addNewPizza({ id: 6, name: "Seafood", price: 15 });
+addNewPizza({ id: 7, name: "Deep Dish", price: 13.5 });
 
 placeOrder("Deep Dish");
 completeOrder(1);
