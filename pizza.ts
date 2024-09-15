@@ -84,6 +84,28 @@ function completeOrder(orderId: number) {
   return currOrder;
 }
 
+/**
+ * Challenge 4
+ * Add a utility function "getPizzaDetail"
+ * Param: "identifier": either the string name of the pizza OR the number ID
+ * Checks if the param is a string or number, then find the pizza accordingly.
+ */
+function getPizzaDetail(identifier: string | number) {
+  let ret: Pizza | undefined;
+  if (typeof identifier === "number") {
+    ret = menu.find((pizza) => pizza.id === identifier);
+  } else {
+    ret = menu.find((pizza) => pizza.name === identifier);
+  }
+
+  if (!ret) {
+    console.log("Pizza {", identifier, "} not found");
+    return;
+  }
+
+  return ret;
+}
+
 // Add some tests that would fail some places
 addNewPizza({ id: 5, name: "Chicken", price: 11 });
 addNewPizza({ id: 6, name: "Seafood", price: 15 });
@@ -95,3 +117,8 @@ completeOrder(1);
 console.log("Menu: ", menu);
 console.log("Orders: ", orderQueue);
 console.log("Cash: ", cashInRegister);
+
+getPizzaDetail(1);
+getPizzaDetail(8);
+getPizzaDetail("Veggie");
+getPizzaDetail("BBQ");
