@@ -1,5 +1,5 @@
 import { getPizzaDetail } from "./pizza.ts";
-
+//TODO: Group things in functions or classes
 // Inferred
 let myName = "Eryn";
 
@@ -55,9 +55,35 @@ let studentName = "Alice";
 const teacherName = "Bella";
 
 // Unions
-type UserRole = "guest" | "admin" | "member" | "support";
-// let userRole: UserRole = "Admin" -> type error;
-let userRole: UserRole = "admin";
+function unionTypes() {
+  type UserRole = "guest" | "admin" | "member" | "support";
 
+  // let userRole: UserRole = "Admin" -> type error;
+  // let userRole: UserRole = "admin";
+
+  type User = {
+    username: string;
+    role: UserRole;
+  };
+
+  const users: User[] = [
+    { username: "john_doe", role: "member" },
+    { username: "jane_doe", role: "admin" },
+    { username: "mary-sue", role: "guest" },
+  ];
+
+  // Explicitly type return data
+  // Useful for when refactoring code
+  function fetchUserDetails(username: string): User {
+    const user = users.find((user) => user.username === username);
+    if (!user) {
+      throw new Error(`User with username ${username} not found.`);
+    }
+
+    return user;
+  }
+}
+
+// Using an imported function
 // console.log(getPizzaDetail(false));  => throws a TypeError
 console.log(getPizzaDetail(1));
