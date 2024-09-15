@@ -90,7 +90,7 @@ function completeOrder(orderId: number) {
  * Param: "identifier": either the string name of the pizza OR the number ID
  * Checks if the param is a string or number, then find the pizza accordingly.
  */
-function getPizzaDetail(identifier: string | number) {
+export function getPizzaDetail(identifier: string | number) {
   let ret: Pizza | undefined;
   if (typeof identifier === "number") {
     ret = menu.find((pizza) => pizza.id === identifier);
@@ -109,18 +109,22 @@ function getPizzaDetail(identifier: string | number) {
 }
 
 // Add some tests that would fail some places
-addNewPizza({ id: 5, name: "Chicken", price: 11 });
-addNewPizza({ id: 6, name: "Seafood", price: 15 });
-addNewPizza({ id: 7, name: "Deep Dish", price: 13.5 });
+function runTests() {
+  addNewPizza({ id: 5, name: "Chicken", price: 11 });
+  addNewPizza({ id: 6, name: "Seafood", price: 15 });
+  addNewPizza({ id: 7, name: "Deep Dish", price: 13.5 });
 
-placeOrder("Deep Dish");
-completeOrder(1);
+  placeOrder("Deep Dish");
+  completeOrder(1);
 
-console.log("Menu: ", menu);
-console.log("Orders: ", orderQueue);
-console.log("Cash: ", cashInRegister);
+  console.log("Menu: ", menu);
+  console.log("Orders: ", orderQueue);
+  console.log("Cash: ", cashInRegister);
 
-getPizzaDetail(1);
-getPizzaDetail(8);
-getPizzaDetail("VEGGIE");
-getPizzaDetail("BBQ");
+  getPizzaDetail(1);
+  getPizzaDetail(8);
+  getPizzaDetail("VEGGIE");
+  getPizzaDetail("BBQ");
+}
+
+// runTests();

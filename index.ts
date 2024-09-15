@@ -1,3 +1,5 @@
+import { getPizzaDetail } from "./pizza.ts";
+
 // Inferred
 let myName = "Eryn";
 
@@ -6,10 +8,8 @@ let numberOfWheels: number = 4;
 let isStudent: boolean = false;
 
 // Custom Types
-let favoriteFood: string = "hotpot";
-
 type Food = string;
-favoriteFood = "sichuan";
+const favoriteFood: Food = "hotpot";
 
 // Nested types
 type Address = {
@@ -58,3 +58,5 @@ const teacherName = "Bella";
 type UserRole = "guest" | "admin" | "member" | "support";
 // let userRole: UserRole = "Admin" -> type error;
 let userRole: UserRole = "admin";
+
+console.log(getPizzaDetail(false));
