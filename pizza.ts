@@ -34,7 +34,7 @@ function addNewPizza(newPizza: Pizza) {
  * 3. pushes a new "order object" to the orderQueue
  * 4. returns the new order object (jic we need to later)
  */
-function placeOrder(pizzaName) {
+function placeOrder(pizzaName: string) {
   // Find pizza
   const pizza = menu.find((pizza) => pizza.name === pizzaName);
   if (!pizza) {
