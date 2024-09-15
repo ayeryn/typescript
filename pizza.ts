@@ -1,6 +1,12 @@
 // A simple pizza restaurant program
+// Create custom types
+type Pizza = {
+  name: string;
+  price: number;
+};
+
 // Setup
-const menu = [
+const menu: Pizza[] = [
   { name: "Sausage", price: 10.5 },
   { name: "Truffle", price: 12 },
   { name: "Cheese", price: 8 },
@@ -16,7 +22,7 @@ const orderQueue = [];
  * Add a utility function "addNewPizza" that takes a pizza object and adds it
  * to the menu
  */
-function addNewPizza(newPizza) {
+function addNewPizza(newPizza: Pizza) {
   menu.push(newPizza);
 }
 
