@@ -11,15 +11,18 @@ let favoriteFood: string = "hotpot";
 type Food = string;
 favoriteFood = "sichuan";
 
+// Nested types
+type Address = {
+  street: string;
+  city: string;
+  zipCode: number;
+};
+
 type Person = {
   name: string;
   age: number;
   isStudent: boolean;
-  address: {
-    street: string;
-    city: string;
-    zipCode: number;
-  };
+  address?: Address; // nested and optional
 };
 
 let person: Person = {
@@ -37,9 +40,12 @@ let person2: Person = {
   name: "Bob",
   age: 19,
   isStudent: false,
-  address: {
-    street: "456 Market",
-    city: "Boston",
-    zipCode: 65432,
-  },
 };
+
+function displayInfo(p: Person) {
+  // ? means optional
+  console.log(`${p.name} lives at ${p.address?.street}`);
+}
+
+displayInfo(person); // Amy lives at 123 Main
+displayInfo(person2); // Bob lives at undefined
