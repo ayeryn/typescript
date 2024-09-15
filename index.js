@@ -36,7 +36,7 @@ function placeOrder(pizzaName) {
 
   // Add order to queue
   const newOrder = {
-    id: orderQueue.length + 1,
+    id: nextOrderId++,
     name: pizzaName,
     status: "ordered",
   };
@@ -57,3 +57,15 @@ function completeOrder(orderId) {
   currOrder.status = "completed";
   return currOrder;
 }
+
+// Add some tests that would fail some places
+addNewPizza({ name: "Chicken", price: 11 });
+addNewPizza({ name: "Seafood", price: 15 });
+addNewPizza({ name: "Deep Dish", price: 13.5 });
+
+placeOrder("Deep Dish");
+completeOrder("1");
+
+console.log("Menu: ", menu);
+console.log("Orders: ", orderQueue);
+console.log("Cash: ", cashInRegister);
