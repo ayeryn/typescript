@@ -90,7 +90,7 @@ function completeOrder(orderId: number) {
  * Param: "identifier": either the string name of the pizza OR the number ID
  * Checks if the param is a string or number, then find the pizza accordingly.
  */
-export function getPizzaDetail(identifier: string | number) {
+export function getPizzaDetail(identifier: string | number): Pizza | undefined {
   let ret: Pizza | undefined;
   if (typeof identifier === "number") {
     ret = menu.find((pizza) => pizza.id === identifier);
