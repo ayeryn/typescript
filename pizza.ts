@@ -159,31 +159,3 @@ addToArray<Order>(orderQueue, {
 
 console.log("Menu: ", menu);
 console.log("Orders: ", orderQueue);
-
-// function completeOrder(orderId: number): Order | undefined {
-//   const order = orderQueue.find((order) => order.id === orderId);
-//   if (!order) {
-//     console.error(`${orderId} was not found in the orderQueue`);
-//     return;
-//   }
-//   order.status = "completed";
-//   return order;
-// }
-
-// export function getPizzaDetail(identifier: string | number): Pizza | undefined {
-//   if (typeof identifier === "string") {
-//     return menu.find(
-//       (pizza) => pizza.name.toLowerCase() === identifier.toLowerCase()
-//     );
-//   } else if (typeof identifier === "number") {
-//     return menu.find((pizza) => pizza.id === identifier);
-//   } else {
-//     throw new TypeError(
-//       "Parameter `identifier` must be either a string or a number"
-//     );
-//   }
-// }
-
-// addNewPizza({ id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
-// addNewPizza({ id: nextPizzaId++, name: "BBQ Chicken", price: 12 });
-// addNewPizza({ id: nextPizzaId++, name: "Spicy Sausage", price: 11 });
