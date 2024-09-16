@@ -62,14 +62,19 @@ function unionTypes() {
   // let userRole: UserRole = "admin";
 
   type User = {
+    id: number;
     username: string;
     role: UserRole;
   };
 
+  type UpdatedUser = Partial<User>;
+  let nextUserId = 1;
+
   const users: User[] = [
-    { username: "john_doe", role: "member" },
-    { username: "jane_doe", role: "admin" },
-    { username: "mary-sue", role: "guest" },
+    { id: nextUserId++, username: "john_doe", role: "member" },
+    { id: nextUserId++, username: "jane_doe", role: "admin" },
+    { id: nextUserId++, username: "mary-sue", role: "guest" },
+    { id: nextUserId++, username: "jack-sue", role: "support" },
   ];
 
   // Explicitly type return data
@@ -82,7 +87,38 @@ function unionTypes() {
 
     return user;
   }
+
+  function updateUser(id: number, updates: UpdatedUser) {
+    // Find the user in the array by the id
+    const user = users.find((user) => user.id === id);
+    if (!user) {
+      console.error("User not found!");
+      return;
+    }
+
+    // Use Object.assign to update the found user in place
+    return Object.assign(user, updates);
+  }
+
+  // updateUser(1, { username: "new_john_doe" });
+  // updateUser(4, { role: "admin" });
+
+  function addNewUser(newUser: Omit<User, "id">): User {
+    // Create a new variable called "user"
+    // Add an id property to it and spread in all the properties of newUser
+
+    const user: User = {
+      id: nextUserId++,
+      ...newUser,
+    };
+
+    users.push(user);
+    return user;
+  }
+  // addNewUser({ username: "test_user", role: "member" });
+  // console.log(users);
 }
+unionTypes();
 
 // Using an imported function
 // console.log(getPizzaDetail(false));  => throws a TypeError

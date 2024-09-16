@@ -13,24 +13,28 @@ type Order = {
 };
 
 // Setup
-const menu: Pizza[] = [
-  { id: 1, name: "Sausage", price: 10.5 },
-  { id: 2, name: "Truffle", price: 12 },
-  { id: 3, name: "Cheese", price: 8 },
-  { id: 4, name: "Veggie", price: 9 },
-];
-
+let nextPizzaId = 1;
 let cashInRegister = 100;
 let nextOrderId = 1;
 const orderQueue: Order[] = [];
+const menu: Pizza[] = [
+  { id: nextPizzaId++, name: "Sausage", price: 10.5 },
+  { id: nextPizzaId++, name: "Truffle", price: 12 },
+  { id: nextPizzaId++, name: "Cheese", price: 8 },
+  { id: nextPizzaId++, name: "Veggie", price: 9 },
+];
 
 /**
  * Challenge 1
  * Add a utility function "addNewPizza" that takes a pizza object and adds it
  * to the menu
  */
-function addNewPizza(newPizza: Pizza) {
-  menu.push(newPizza);
+function addNewPizza(newPizza: Omit<Pizza, "id">): void {
+  const pizza = {
+    id: nextPizzaId++,
+    ...newPizza,
+  };
+  menu.push(pizza);
 }
 
 /**
@@ -112,9 +116,9 @@ export function getPizzaDetail(identifier: string | number): Pizza | undefined {
 
 // Add some tests that would fail some places
 function runTests() {
-  addNewPizza({ id: 5, name: "Chicken", price: 11 });
-  addNewPizza({ id: 6, name: "Seafood", price: 15 });
-  addNewPizza({ id: 7, name: "Deep Dish", price: 13.5 });
+  addNewPizza({ name: "Chicken", price: 11 });
+  addNewPizza({ name: "Seafood", price: 15 });
+  addNewPizza({ name: "Deep Dish", price: 13.5 });
 
   placeOrder("Deep Dish");
   completeOrder(1);
