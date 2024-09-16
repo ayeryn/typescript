@@ -134,3 +134,52 @@ function runTests() {
 }
 
 // runTests();
+
+/**
+ * Challenge: add types our generic `addToArray` function. It should work
+ * for adding new pizzas to the `menu` and adding new orders to the `orderQueue`
+ */
+
+function addToArray<T>(array: T[], item: T) {
+  array.push(item);
+  return array;
+}
+
+// example usage:
+addToArray(menu, { id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+addToArray(orderQueue, {
+  id: nextOrderId++,
+  pizza: menu[2],
+  status: "done", // status should ONLY be "ordered" or "completed"
+});
+
+console.log("Menu: ", menu);
+console.log("Orders: ", orderQueue);
+
+// function completeOrder(orderId: number): Order | undefined {
+//   const order = orderQueue.find((order) => order.id === orderId);
+//   if (!order) {
+//     console.error(`${orderId} was not found in the orderQueue`);
+//     return;
+//   }
+//   order.status = "completed";
+//   return order;
+// }
+
+// export function getPizzaDetail(identifier: string | number): Pizza | undefined {
+//   if (typeof identifier === "string") {
+//     return menu.find(
+//       (pizza) => pizza.name.toLowerCase() === identifier.toLowerCase()
+//     );
+//   } else if (typeof identifier === "number") {
+//     return menu.find((pizza) => pizza.id === identifier);
+//   } else {
+//     throw new TypeError(
+//       "Parameter `identifier` must be either a string or a number"
+//     );
+//   }
+// }
+
+// addNewPizza({ id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
+// addNewPizza({ id: nextPizzaId++, name: "BBQ Chicken", price: 12 });
+// addNewPizza({ id: nextPizzaId++, name: "Spicy Sausage", price: 11 });
