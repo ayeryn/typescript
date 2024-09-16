@@ -123,3 +123,27 @@ unionTypes();
 // Using an imported function
 // console.log(getPizzaDetail(false));  => throws a TypeError
 console.log(getPizzaDetail(1));
+
+function genericTypes() {
+  const gameScores = [14, 21, 33, 42, 59];
+  const favoriteThings = [
+    "deep house music",
+    "martin garrix",
+    "spicy food",
+    "autumn weather",
+  ];
+  const voters = [
+    { name: "Amy", age: 42 },
+    { name: "Betty", age: 77 },
+  ];
+
+  function getLastItem<T>(array: T[]): T {
+    return array[array.length - 1];
+  }
+
+  console.log(getLastItem(gameScores));
+  console.log(getLastItem(favoriteThings));
+  console.log(getLastItem(voters));
+}
+
+// genericTypes();
