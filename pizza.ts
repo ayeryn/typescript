@@ -146,11 +146,15 @@ function addToArray<T>(array: T[], item: T) {
 }
 
 // example usage:
-addToArray(menu, { id: nextPizzaId++, name: "Chicken Bacon Ranch", price: 12 });
-addToArray(orderQueue, {
+addToArray<Pizza>(menu, {
+  id: nextPizzaId++,
+  name: "Chicken Bacon Ranch",
+  price: 12,
+});
+addToArray<Order>(orderQueue, {
   id: nextOrderId++,
   pizza: menu[2],
-  status: "done", // status should ONLY be "ordered" or "completed"
+  status: "completed",
 });
 
 console.log("Menu: ", menu);
